@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
-const dateFormat = require('../utils/dateFormat');
+// const dateFormat = require('../utils/dateFormat');
 
-const User = new Schema(
+const UserSchema = new Schema(
     {
         userName: {
             type: String,
@@ -36,10 +36,10 @@ const User = new Schema(
 );
 
 
-UserSchema.virtual('').get(function () {
-    return this.comments.reduce((total, comment) => total + comment.replies.length + 1, 0);
-});
+// UserSchema.virtual('').get(function () {
+//     return this.comments.reduce((total, comment) => total + comment.replies.length + 1, 0);
+// });
 
 const User = model('User', UserSchema);
 
-module.exports = Pizza;
+module.exports = User;

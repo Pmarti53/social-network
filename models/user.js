@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const dateformat = require('../utils/dateFormat');
 
 
 const UserSchema = new Schema(
@@ -6,12 +7,14 @@ const UserSchema = new Schema(
         userName: {
             type: String,
             required: true,
-            trim: true
+            trim: true,
+            unique: true
         },
         email: {
             type: String,
             required: true,
-            trim: true
+            match: /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.])/,
+            unique: true
         },
         thoughts: [
             {

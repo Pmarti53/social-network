@@ -41,6 +41,22 @@ const thoughtController = {
                 res.json(dbUserData);
             })
             .catch(err => res.json(err));
+    },
+
+    addReaction({ params, body }, res) {
+        Comment.findByIdAndUpdate(
+            { _id: params.thoughtId },
+            { $push: { replies: body } },
+            { new: true }
+        )
+            .then(dbUserData => {
+                if (!dbUserData) {
+                    res.status(404).json({ message: 'No user found with this id!' });
+                    return;
+                }
+                res.json(dbUserData);
+            })
+            .catch(err => res.json(err));
     }
 };
 
